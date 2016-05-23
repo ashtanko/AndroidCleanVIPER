@@ -1,16 +1,17 @@
 package com.twere.android.clean.viper.domain.shot;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 import com.twere.android.clean.viper.domain.team.Team;
 import com.twere.android.clean.viper.domain.user.User;
-import java.io.Serializable;
 import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Shot implements Serializable {
+public class Shot implements Parcelable {
 
   public static final String LIST_ANIMATED = "animated";
   public static final String LIST_ATTACHMENTS = "attachments";
@@ -86,6 +87,39 @@ public class Shot implements Serializable {
   @SerializedName("team") private Team team;
 
   private boolean seen;
+
+  protected Shot(Parcel in) {
+    id = in.readLong();
+    title = in.readString();
+    description = in.readString();
+    width = in.readInt();
+    height = in.readInt();
+    viewsCount = in.readLong();
+    likesCount = in.readLong();
+    commentsCount = in.readLong();
+    attachmentsCount = in.readLong();
+    reboundsCount = in.readLong();
+    bucketsCount = in.readLong();
+    htmlUrl = in.readString();
+    attachmentsUrl = in.readString();
+    bucketsUrl = in.readString();
+    commentsUrl = in.readString();
+    likesUrl = in.readString();
+    projectsUrl = in.readString();
+    reboundsUrl = in.readString();
+    tags = in.createStringArray();
+    seen = in.readByte() != 0;
+  }
+
+  public static final Creator<Shot> CREATOR = new Creator<Shot>() {
+    @Override public Shot createFromParcel(Parcel in) {
+      return new Shot(in);
+    }
+
+    @Override public Shot[] newArray(int size) {
+      return new Shot[size];
+    }
+  };
 
   public long getId() {
     return id;
@@ -343,5 +377,32 @@ public class Shot implements Serializable {
       e.printStackTrace();
     }
     return null;
+  }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel parcel, int i) {
+    parcel.writeLong(id);
+    parcel.writeString(title);
+    parcel.writeString(description);
+    parcel.writeInt(width);
+    parcel.writeInt(height);
+    parcel.writeLong(viewsCount);
+    parcel.writeLong(likesCount);
+    parcel.writeLong(commentsCount);
+    parcel.writeLong(attachmentsCount);
+    parcel.writeLong(reboundsCount);
+    parcel.writeLong(bucketsCount);
+    parcel.writeString(htmlUrl);
+    parcel.writeString(attachmentsUrl);
+    parcel.writeString(bucketsUrl);
+    parcel.writeString(commentsUrl);
+    parcel.writeString(likesUrl);
+    parcel.writeString(projectsUrl);
+    parcel.writeString(reboundsUrl);
+    parcel.writeStringArray(tags);
+    parcel.writeByte((byte) (seen ? 1 : 0));
   }
 }

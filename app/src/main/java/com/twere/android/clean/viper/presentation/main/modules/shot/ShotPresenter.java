@@ -35,7 +35,7 @@ public class ShotPresenter extends BaseMainPresenter<ShotView> {
     getShotsInteractor.unsubscribe();
   }
 
-  public void selectedShot(Shot shot) {
-    getRouter().showMessage(shot);
+  void selectedShot(Shot shot) {
+    getRouter().showShot(shot);
   }
 }

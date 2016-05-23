@@ -1,5 +1,6 @@
 package com.twere.android.clean.viper.presentation.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,7 @@ import com.twere.android.clean.viper.presentation.injection.component.DaggerActi
 import com.twere.android.clean.viper.presentation.injection.module.DataModule;
 import com.twere.android.clean.viper.presentation.injection.module.DomainModule;
 import com.twere.android.clean.viper.presentation.main.modules.common.BaseMainFragment;
+import com.twere.android.clean.viper.presentation.main.modules.shot.ShotActivity;
 import com.twere.android.clean.viper.presentation.main.modules.shot.ShotFragment;
 import dagger.internal.Preconditions;
 
@@ -60,8 +62,10 @@ import dagger.internal.Preconditions;
     return activityComponent;
   }
 
-  @Override public void showMessage(Shot shot) {
-
+  @Override public void showShot(Shot shot) {
+    Intent intent = new Intent(MainActivity.this, ShotActivity.class);
+    intent.putExtra(Shot.class.getCanonicalName(), shot);
+    startActivity(intent);
   }
 
   @Override public void openShot() {

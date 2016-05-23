@@ -11,11 +11,12 @@ import com.twere.android.clean.viper.R;
 import com.twere.android.clean.viper.domain.shot.Shot;
 import java.util.List;
 
-public class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ShotViewHolder> {
+class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ShotViewHolder> {
 
   private final List<Shot> shots;
+  private View.OnClickListener onItemClickListener;
 
-  public ShotAdapter(List<Shot> shots) {
+  ShotAdapter(List<Shot> shots) {
     this.shots = shots;
   }
 
@@ -29,20 +30,26 @@ public class ShotAdapter extends RecyclerView.Adapter<ShotAdapter.ShotViewHolder
     holder.bind(shots.get(position));
   }
 
+  void setOnItemClickListener(View.OnClickListener onItemClickListener) {
+    this.onItemClickListener = onItemClickListener;
+  }
+
   @Override public int getItemCount() {
     return shots.size();
   }
 
-  public class ShotViewHolder extends RecyclerView.ViewHolder {
+  class ShotViewHolder extends RecyclerView.ViewHolder {
     @Bind(R.id.shot_id) TextView shotId;
 
-    public ShotViewHolder(View itemView) {
+    ShotViewHolder(View itemView) {
       super(itemView);
       ButterKnife.bind(this, itemView);
+      itemView.setOnClickListener(onItemClickListener);
     }
 
-    public void bind(Shot shot) {
+    void bind(Shot shot) {
       shotId.setText(shot.getTitle());
+      itemView.setTag(shot);
     }
   }
 }
