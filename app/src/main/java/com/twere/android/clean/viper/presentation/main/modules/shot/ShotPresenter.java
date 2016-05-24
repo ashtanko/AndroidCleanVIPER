@@ -7,7 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import rx.Subscriber;
 
-public class ShotPresenter extends BaseMainPresenter<ShotView> {
+class ShotPresenter extends BaseMainPresenter<ShotView> {
 
   private final GetShotsInteractor getShotsInteractor;
 

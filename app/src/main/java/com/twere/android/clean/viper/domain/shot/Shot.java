@@ -321,7 +321,7 @@ public class Shot implements Parcelable {
     this.tags = tags;
   }
 
-  public JSONObject toJson() {
+  private JSONObject toJson() {
     JSONObject result = new JSONObject();
     try {
       result.put("id", id);

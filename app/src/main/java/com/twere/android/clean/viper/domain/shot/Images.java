@@ -7,16 +7,13 @@ import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Images implements Serializable {
+class Images implements Serializable {
 
-  @SerializedName("hidpi")
-  private String hidpi;
+  @SerializedName("hidpi") private String hidpi;
 
-  @SerializedName("normal")
-  private String normal;
+  @SerializedName("normal") private String normal;
 
-  @SerializedName("teaser")
-  private String teaser;
+  @SerializedName("teaser") private String teaser;
 
   public String getHidpi() {
     return hidpi;
@@ -42,8 +39,7 @@ public class Images implements Serializable {
     this.teaser = teaser;
   }
 
-  @Override
-  public String toString() {
+  @Override public String toString() {
     try {
       return toJson().toString(4);
     } catch (JSONException e) {
@@ -57,7 +53,7 @@ public class Images implements Serializable {
     return gson.toJson(this);
   }
 
-  public JSONObject toJson() {
+  JSONObject toJson() {
     JSONObject result = new JSONObject();
     try {
       result.put("hidpi", hidpi);

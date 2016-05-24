@@ -16,7 +16,7 @@ public abstract class BasePresenter<View, Router> {
     this.view = view;
   }
 
-  public Router getRouter() {
+  protected Router getRouter() {
     return router;
   }
 
