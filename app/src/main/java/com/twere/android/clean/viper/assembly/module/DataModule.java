@@ -1,9 +1,9 @@
 package com.twere.android.clean.viper.assembly.module;
 
 import com.twere.android.clean.viper.BuildConfig;
-import com.twere.android.clean.viper.modules.shot.ShotsDataProviderImpl;
-import com.twere.android.clean.viper.common.data.api.DribbbleService;
-import com.twere.android.clean.viper.modules.shot.ShotDataProvider;
+import com.twere.android.clean.viper.data.local.ShotsDataProviderImpl;
+import com.twere.android.clean.viper.data.api.service.DribbbleService;
+import com.twere.android.clean.viper.data.local.ShotDataProvider;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;

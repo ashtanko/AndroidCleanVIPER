@@ -2,7 +2,7 @@ package com.twere.android.clean.viper.assembly.component;
 
 import com.twere.android.clean.viper.assembly.module.DataModule;
 import com.twere.android.clean.viper.assembly.module.DomainModule;
-import com.twere.android.clean.viper.modules.shot.ShotFragment;
+import com.twere.android.clean.viper.ui.fragment.ShotFragment;
 import dagger.Component;
 import javax.inject.Singleton;
 

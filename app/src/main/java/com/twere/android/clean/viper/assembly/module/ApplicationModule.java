@@ -1,19 +1,19 @@
 package com.twere.android.clean.viper.assembly.module;
 
-import android.app.Application;
-import com.twere.android.clean.viper.DribbbleApplication;
+import android.content.Context;
+import com.twere.android.clean.viper.AndroidApplication;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 
 @Module public final class ApplicationModule {
-  private final DribbbleApplication application;
+  private final AndroidApplication application;
 
-  public ApplicationModule(DribbbleApplication application) {
+  public ApplicationModule(AndroidApplication application) {
     this.application = application;
   }
 
-  @Provides @Singleton Application provideDribbbleApplication() {
+  @Provides @Singleton Context provideAndroidContext() {
     return application;
   }
 }
