@@ -11,8 +11,8 @@ android {
 
   def globalConfiguration = rootProject.extensions.getByName("ext")
 
-  compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
-  buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+  compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+  buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
 
 
   defaultConfig {
@@ -21,13 +21,13 @@ android {
       enabled true
     }
 
-    applicationId globalConfiguration.getAt("androidApplicationId")
-    minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
-    targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
-    versionCode globalConfiguration.getAt("androidVersionCode")
-    versionName globalConfiguration.getAt("androidVersionName")
-    testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
-    testApplicationId globalConfiguration.getAt("testApplicationId")
+    applicationId globalConfiguration["androidApplicationId"]
+    minSdkVersion globalConfiguration["androidMinSdkVersion"]
+    targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+    versionCode globalConfiguration["androidVersionCode"]
+    versionName globalConfiguration["androidVersionName"]
+    testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+    testApplicationId globalConfiguration["testApplicationId"]
 
     buildConfigField STRING, API_URL, '"https://dribbble.com/"'
     buildConfigField STRING, ENDPOINT, '"https://api.dribbble.com/v1/"'
@@ -95,6 +95,7 @@ android {
     javaMaxHeapSize "2048M"
   }
   compileOptions.incremental = false
+  buildToolsVersion '25.0.0'
 }
 
 dependencies {

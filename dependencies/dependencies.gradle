@@ -8,17 +8,17 @@ ext {
 
   versions = [
 
-      buildTools               : "24.0.1",
+      buildTools               : "25.0.0",
       minSdk                   : 15,
-      targetSdk                : 24,
-      compileSdk               : 24,
+      targetSdk                : 25,
+      compileSdk               : 25,
       androidApplicationId     : "io.twere.android.clean.viper",
       versionCode              : 1,
       versionName              : "1.0",
       testApplicationId        : "io.twere.android.clean.viper.test",
       testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner",
 
-      support                  : "24.1.1",
+      support                  : "25.0.0",
       dagger                   : "2.5",
       butterKnife              : "7.0.1",
       javaxAnnotation          : "10.0-b28",
@@ -44,8 +44,8 @@ ext {
   //Android
   androidBuildToolsVersion = "$versions.buildTools"
   androidMinSdkVersion = 15
-  androidTargetSdkVersion = 24
-  androidCompileSdkVersion = 24
+  androidTargetSdkVersion = 25
+  androidCompileSdkVersion = 25
 
   appDependencies = [
 
