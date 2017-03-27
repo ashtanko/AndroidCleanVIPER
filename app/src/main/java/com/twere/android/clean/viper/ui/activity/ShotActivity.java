@@ -3,6 +3,7 @@ package com.twere.android.clean.viper.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import butterknife.Bind;
 import com.twere.android.clean.viper.R;
 import com.twere.android.clean.viper.entity.Shot;
@@ -16,7 +17,11 @@ import com.twere.android.clean.viper.view.BindLayout;
     super.onCreate(savedInstanceState);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    toolbar.setNavigationOnClickListener(view -> finish());
+    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        finish();
+      }
+    });
     Shot shot = getIntent().getParcelableExtra(Shot.class.getCanonicalName());
     setTitle(shot.getTitle());
   }

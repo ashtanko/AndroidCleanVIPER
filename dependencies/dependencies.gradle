@@ -8,7 +8,7 @@ ext {
 
   versions = [
 
-      buildTools               : "25.0.0",
+      buildTools               : "25.0.2",
       minSdk                   : 15,
       targetSdk                : 25,
       compileSdk               : 25,
@@ -18,7 +18,7 @@ ext {
       testApplicationId        : "io.twere.android.clean.viper.test",
       testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner",
 
-      support                  : "25.0.0",
+      support                  : "25.3.0",
       dagger                   : "2.5",
       butterKnife              : "7.0.1",
       javaxAnnotation          : "10.0-b28",

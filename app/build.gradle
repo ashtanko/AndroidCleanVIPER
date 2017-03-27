@@ -9,25 +9,23 @@ android {
   def CLIENT_TOKEN = 'CLIENT_TOKEN'
   def STRING = 'String'
 
-  def globalConfiguration = rootProject.extensions.getByName("ext")
-
-  compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
-  buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+  compileSdkVersion 25
+  buildToolsVersion "25.0.2"
 
 
   defaultConfig {
 
-    jackOptions {
-      enabled true
-    }
+//    jackOptions {
+//      enabled true
+//    }
 
-    applicationId globalConfiguration["androidApplicationId"]
-    minSdkVersion globalConfiguration["androidMinSdkVersion"]
-    targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
-    versionCode globalConfiguration["androidVersionCode"]
-    versionName globalConfiguration["androidVersionName"]
-    testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
-    testApplicationId globalConfiguration["testApplicationId"]
+    applicationId "io.twere.android.clean.viper"
+    minSdkVersion 15
+    targetSdkVersion 25
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testApplicationId 'io.twere.android.clean.viper.test'
 
     buildConfigField STRING, API_URL, '"https://dribbble.com/"'
     buildConfigField STRING, ENDPOINT, '"https://api.dribbble.com/v1/"'
@@ -95,7 +93,7 @@ android {
     javaMaxHeapSize "2048M"
   }
   compileOptions.incremental = false
-  buildToolsVersion '25.0.0'
+  buildToolsVersion '25.0.2'
 }
 
 dependencies {

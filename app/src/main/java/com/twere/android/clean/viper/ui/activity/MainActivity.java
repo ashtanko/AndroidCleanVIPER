@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
 import butterknife.Bind;
 import com.twere.android.clean.viper.R;
 import com.twere.android.clean.viper.entity.Shot;
@@ -22,7 +23,7 @@ import dagger.internal.Preconditions;
 @BindLayout(id = R.layout.activity_main) public class MainActivity extends BaseActivity
     implements MainRouter {
 
-  @Bind(R.id.toolbar)public Toolbar toolbar;
+  @Bind(R.id.toolbar) public Toolbar toolbar;
 
   private ActivityComponent activityComponent;
 
@@ -51,7 +52,11 @@ import dagger.internal.Preconditions;
   public void resolveToolbar(BaseMainFragment fragment) {
     toolbar.setTitle(fragment.getTitle());
     if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-      toolbar.setNavigationOnClickListener(view -> onBackPressed());
+      toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+          onBackPressed();
+        }
+      });
     } else {
       toolbar.setNavigationOnClickListener(null);
     }

@@ -3,6 +3,7 @@ package com.twere.android.clean.viper.ui.fragment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import butterknife.Bind;
 import com.twere.android.clean.viper.R;
 import com.twere.android.clean.viper.entity.Shot;
@@ -36,7 +37,11 @@ import javax.inject.Inject;
   @Override public void setShots(List<Shot> shots) {
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     ShotAdapter adapter = new ShotAdapter(shots);
-    adapter.setOnItemClickListener(view -> presenter.selectedShot((Shot) view.getTag()));
+    adapter.setOnItemClickListener(new View.OnClickListener() {
+      @Override public void onClick(View view) {
+        presenter.selectedShot((Shot) view.getTag());
+      }
+    });
     recyclerView.setAdapter(adapter);
   }
 
