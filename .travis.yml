@@ -20,4 +20,4 @@ android:
   - ".+"
 
 script:
-  gradle wrapper && ./gradlew build
+  ./gradlew build
