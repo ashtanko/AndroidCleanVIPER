@@ -1,8 +1,15 @@
-apply plugin: 'java'
+apply from: '../dep.gradle'
+
+apply plugin: 'kotlin'
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceSets{
+  main{
+    java{
+      srcDirs += 'src/main/kotlin'
+    }
+  }
+}
