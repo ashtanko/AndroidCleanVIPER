@@ -31,6 +31,10 @@ android {
   }
 }
 
+kapt {
+  generateStubs = true
+}
+
 dependencies {
 
   // GOOGLE LIBS
@@ -42,8 +46,8 @@ dependencies {
   compile libs.kotlin
 
   // DEPENDENCY INJECTION
-  compile libs.kodein
-  compile libs.kodeinAndroid
+  compile libs.dagger
+  kapt libs.daggerCompiler
 
   // TEST
   androidTestCompile(libs.espresso, {
