@@ -3,7 +3,7 @@ ext.versions = [
     compileSdkVersion: 25,
     buildToolsVersion: "25.0.2",
     gradleStable     : "2.3.0",
-    gradleAlpha      : "2.4.0-alpha3",
+    gradleAlpha      : "3.0.0-alpha1",
     gradleBeta       : "",
     realm            : "3.0.0",
     kotlinStable     : "1.1.0",
