@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 apply from: 'dep.gradle'
 
 buildscript {
@@ -26,4 +28,21 @@ task wrapper(type: Wrapper) {
 
 task clean(type: Delete) {
   delete rootProject.buildDir
+}
+
+task parseDependencies() {
+  def propertiesFile = new File('dependencies/dependencies.properties')
+  if (!propertiesFile.exists()) {
+    propertiesFile.createNewFile()
+  }
+  def inputFile = new File('dependencies/versions.json')
+  if (inputFile.exists()) {
+    def inputJSON = new JsonSlurper().parseText(inputFile.text)
+    propertiesFile.write("")
+    inputJSON.dependencies.each {
+      if (propertiesFile.exists()) {
+        propertiesFile << "$it.name=$it.version\n"
+      }
+    }
+  }
 }
