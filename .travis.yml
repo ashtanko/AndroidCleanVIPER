@@ -33,6 +33,7 @@ env:
     - ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-20  ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
     - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
     # no android-23 yet 20150925
@@ -87,7 +88,7 @@ android:
     - android-19
     - sys-img-armeabi-v7a-android-19
     #- sys-img-x86-android-19
-    - android-21
+    - android-20
     - sys-img-armeabi-v7a-android-20
     #- sys-img-x86-android-20
     - android-21
