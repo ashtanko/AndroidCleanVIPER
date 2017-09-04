@@ -7,6 +7,8 @@ jdk:
 #  - openjdk7
 #  - openjdk6
 env:
+  global:
+    - ADB_INSTALL_TIMEOUT=30 # minutes
   matrix:
     - ANDROID_TARGET=android-4  ANDROID_ABI=armeabi
     - ANDROID_TARGET=android-5  ANDROID_ABI=armeabi
