@@ -1,11 +1,8 @@
-#http://docs.travis-ci.com/user/languages/android/#stq=&stp=0
-sudo: false
 language: android
-jdk:
-#  - oraclejdk8
-  - oraclejdk7
-#  - openjdk7
-#  - openjdk6
+sudo: required 
+dist: precise
+jdk: oraclejdk8
+
 env:
   global:
     - ADB_INSTALL_TIMEOUT=30 # minutes
