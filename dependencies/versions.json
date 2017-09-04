@@ -1,0 +1,16 @@
+{
+  "dependencies" : [
+
+    {
+      "id":"io.reactivex.rxjava2:rxjava",
+      "name":"rxjava2",
+      "version" : "2.0.6"
+    },
+
+    {
+      "id":"com.google.dagger:dagger",
+      "name":"dagger",
+      "version" : "2.10"
+    }
+  ]
+}

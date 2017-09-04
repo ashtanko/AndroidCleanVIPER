@@ -1,0 +1,87 @@
+
+
+ext.versions = [
+
+    compileSdkVersion: 25,
+    buildToolsVersion: "25.0.2",
+    gradleStable     : "2.3.0",
+    gradleAlpha      : "3.0.0-alpha1",
+    gradleBeta       : "",
+    realm            : "3.0.0",
+    kotlinStable     : "1.1.0",
+    kotlinBeta       : "1.1.0",
+    supportVersion   : "25.3.1",
+    constraintVersion: "1.0.2",
+    kotlinVersion    : "1.1.1",
+    daggerVersion    : "2.10",
+    gsonVersion      : "2.7",
+    retrofit2Version : "2.2.0",
+    okhttpVersion    : "3.6.0",
+    rxJavaVersion    : "2.0.6",
+    rxAndroidVersion : "2.0.1",
+    ciceroneVersion  : "1.1",
+    moxyVersion      : "1.4.6",
+    junitVersion     : "4.12",
+    espressoVersion  : "2.2.2",
+    kodeinVersion    : "3.3.0",
+
+]
+
+ext.gradlePlugins = [
+
+    gradle: "com.android.tools.build:gradle:$versions.gradleAlpha",
+    realm : "io.realm:realm-gradle-plugin:$versions.realm",
+    kotlin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlinStable",
+    apt   : "com.neenbedankt.gradle.plugins:android-apt:1.8",
+
+]
+
+ext.libs = [
+
+    // GOOGLE LIBS
+    support                  : "com.android.support:appcompat-v7:$versions.supportVersion",
+    recyclerview             : "com.android.support:recyclerview-v7:$versions.supportVersion",
+    constraint               : "com.android.support.constraint:constraint-layout:$versions.constraintVersion",
+    dagger                   : "com.google.dagger:dagger:$versions.daggerVersion",
+    daggerCompiler           : "com.google.dagger:dagger-compiler:$versions.daggerVersion",
+    gson                     : "com.google.code.gson:gson:$versions.gsonVersion",
+
+    // JETBRAINS LIBS
+    kotlinReflect            : "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlinVersion",
+    kotlin                   : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlinVersion",
+    kotlinJRE8               : "org.jetbrains.kotlin:kotlin-stdlib-jre8:$versions.kotlinVersion",
+
+    // SQUARE LIBS
+    retrofit2                : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
+    retrofit2ConverterGson   : "com.squareup.retrofit2:converter-gson:$versions.retrofit2Version",
+    okhttp3                  : "com.squareup.okhttp3:okhttp:$versions.okhttpVersion",
+    retrofit2AdapterRXjava2  : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit2Version",
+    okhttp3LoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion",
+    okhttp3Mockwebserver     : "com.squareup.okhttp3:mockwebserver:$versions.okhttpVersion",
+
+    // RX LIBS
+    rxjava2                  : "io.reactivex.rxjava2:rxjava:$versions.rxJavaVersion",
+    rxandroid                : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroidVersion",
+
+    // OTHERS
+    jsr250                   : "javax.annotation:jsr250-api:1.0",
+    cicerone                 : "ru.terrakok.cicerone:cicerone:$versions.ciceroneVersion",
+    fuel                     : "com.github.kittinunf.fuel:fuel-android:$versions.kotlinVersion",
+    kodein                   : "com.github.salomonbrys.kodein:kodein:$versions.kodeinVersion",
+    kodeinAndroid            : "com.github.salomonbrys.kodein:kodein-android:$versions.kodeinVersion",
+
+    // ARELLO MOBILE LIBS
+    moxy                     : "com.arello-mobile:moxy:$versions.moxyVersion",
+    moxyCompiler             : "com.arello-mobile:moxy-compiler:$versions.moxyVersion",
+
+    // TESTS
+    junit                    : "junit:junit:$versions.junitVersion",
+    espresso                 : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
+
+]
+
+allprojects {
+  repositories {
+    jcenter()
+  }
+}

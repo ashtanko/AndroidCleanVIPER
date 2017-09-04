@@ -1,14 +1,17 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import groovy.json.JsonSlurper
+
+apply from: 'dep.gradle'
 
 buildscript {
+
+  apply from: 'dep.gradle'
+
   repositories {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.4.0-alpha3'
-
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
+    classpath gradlePlugins.gradle
+    classpath gradlePlugins.kotlin
   }
 }
 
@@ -18,6 +21,28 @@ allprojects {
   }
 }
 
+task wrapper(type: Wrapper) {
+  description 'Creates the gradle wrapper.'
+  gradleVersion = '3.4.1'
+}
+
 task clean(type: Delete) {
   delete rootProject.buildDir
+}
+
+task parseDependencies() {
+  def propertiesFile = new File('dependencies/dependencies.properties')
+  if (!propertiesFile.exists()) {
+    propertiesFile.createNewFile()
+  }
+  def inputFile = new File('dependencies/versions.json')
+  if (inputFile.exists()) {
+    def inputJSON = new JsonSlurper().parseText(inputFile.text)
+    propertiesFile.write("")
+    inputJSON.dependencies.each {
+      if (propertiesFile.exists()) {
+        propertiesFile << "$it.name=$it.version\n"
+      }
+    }
+  }
 }

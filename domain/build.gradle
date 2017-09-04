@@ -1,0 +1,23 @@
+apply from: '../dep.gradle'
+
+apply plugin: 'kotlin'
+
+dependencies {
+  compile libs.okhttp3
+  compile libs.fuel
+  testCompile libs.junit
+  testCompile libs.okhttp3Mockwebserver
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs += 'src/main/kotlin'
+    }
+  }
+  test {
+    java {
+      srcDirs += 'src/test/kotlin'
+    }
+  }
+}
