@@ -1,40 +1,131 @@
+#http://docs.travis-ci.com/user/languages/android/#stq=&stp=0
+sudo: false
 language: android
-
-jdk: oraclejdk8
-
-sudo: required
-
-dependencies:
-  pre:
-    - mkdir -p ${ANDROID_HOME}/licenses
-    - echo $ANDROID_SDK_LICENSE > ${ANDROID_HOME}/licenses/android-sdk-license
-    - bash ./misc/download_keystore.sh
-  override:
-    - ./gradlew dependencies || true
-
-test:
-  override:
-    - ./gradlew clean assemble -Dpre-dex=false --console=plain --stacktrace
-    - ./gradlew test --console=plain
-    - ./gradlew lint --console=plain
-
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
-    - cp -r app/build/test-results/* $CIRCLE_TEST_REPORTS
+jdk:
+#  - oraclejdk8
+  - oraclejdk7
+#  - openjdk7
+#  - openjdk6
+env:
+  matrix:
+    - ANDROID_TARGET=android-4  ANDROID_ABI=armeabi
+    - ANDROID_TARGET=android-5  ANDROID_ABI=armeabi
+    - ANDROID_TARGET=android-6  ANDROID_ABI=armeabi
+    - ANDROID_TARGET=android-7  ANDROID_ABI=armeabi
+    #- ANDROID_TARGET=android-8  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-8  ANDROID_ABI=armeabi
+    #- ANDROID_TARGET=android-9  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-9  ANDROID_ABI=armeabi
+    #- ANDROID_TARGET=android-10  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
+    
+    # 11, 12, 13, 14 often fail.
+    #- ANDROID_TARGET=android-11  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-11  ANDROID_ABI=armeabi
+    #- ANDROID_TARGET=android-12  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-12  ANDROID_ABI=armeabi
+    #- ANDROID_TARGET=android-13  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-13  ANDROID_ABI=armeabi
+    - ANDROID_TARGET=android-14  ANDROID_ABI=armeabi-v7a
+    
+    - ANDROID_TARGET=android-15  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
+    # no android-23 yet 20150925
+    - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
 
 android:
   components:
-  - tools
-  - platform-tools
-  - build-tools-25.0.2
-  - android-25
-  - extra-android-support
-  - extra-android-m2repository
-  - extra-google-m2repository
-  licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
-  - ".+"
+  #  - build-tools-19.0.0
+    - build-tools-23
+    
+    - android-4
+    - sys-img-armeabi-android-4
+    - android-5
+    - sys-img-armeabi-android-5
+    - android-6
+    - sys-img-armeabi-android-6
+    - android-7
+    - sys-img-armeabi-android-7
+    - android-8
+    - sys-img-armeabi-android-8
+    #- sys-img-x86-android-8
+    - android-9
+    - sys-img-armeabi-android-9
+    #- sys-img-x86-android-9
+    - android-10
+    - sys-img-armeabi-android-10
+    #- sys-img-x86-android-10
+    - android-11
+    - sys-img-armeabi-android-11
+    #- sys-img-x86-android-11
+    - android-12
+    - sys-img-armeabi-android-12
+    #- sys-img-x86-android-12
+    - android-13
+    - sys-img-armeabi-v7a-android-13
+    #- sys-img-x86-android-13
+    - android-14
+    - sys-img-armeabi-v7a-android-14
+    #- sys-img-x86-android-14
+    - android-15
+    - sys-img-armeabi-v7a-android-15
+    #- sys-img-x86-android-15
+    - android-16
+    - sys-img-armeabi-v7a-android-16
+    #- sys-img-x86-android-16
+    - android-17
+    - sys-img-armeabi-v7a-android-17
+    #- sys-img-x86-android-17
+    - android-18
+    - sys-img-armeabi-v7a-android-18
+    #- sys-img-x86-android-18
+    - android-19
+    - sys-img-armeabi-v7a-android-19
+    #- sys-img-x86-android-19
+    - android-21
+    - sys-img-armeabi-v7a-android-20
+    #- sys-img-x86-android-20
+    - android-21
+    - sys-img-armeabi-v7a-android-21
+    #- sys-img-x86-android-21
+    - android-22
+    - sys-img-armeabi-v7a-android-22
+    #- sys-img-x86-android-22
+    - android-23
+    - sys-img-armeabi-v7a-android-23
+    #- sys-img-x86-android-23
 
-script:
-  ./gradlew dependencies || true
+before_script:
+  # Create and start emulator
+  - echo PATH $PATH
+  - android list target
+  
+  - android list sdk
+  - which android-update-sdk
+  - cat `which android-update-sdk`
+  - android-update-sdk
+  - android list sdk --all --extended
+# install other componets.
+#  - android-update-sdk --components=build-tools-21.1.1
+#  - android list sdk --all --extended | grep id:
+  
+  - uname -a
+  - df -h
+  - mount
+  - cat /proc/cpuinfo
+  - echo $ANDROID_TARGET 
+  - echo $ANDROID_ABI
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb wait-for-device
+  - cat `which android-wait-for-emulator`
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+  
+
+script: adb shell monkey -p com.android.launcher -v 7777 --throttle 200
