@@ -1,124 +1,29 @@
 apply plugin: 'com.android.application'
 
-
 android {
-  def API_URL = 'API_URL'
-  def ENDPOINT = 'ENDPOINT'
-  def CLIENT_ID = 'CLIENT_ID'
-  def CLIENT_SECRET = 'CLIENT_SECRET'
-  def CLIENT_TOKEN = 'CLIENT_TOKEN'
-  def STRING = 'String'
-
   compileSdkVersion 25
   buildToolsVersion "25.0.2"
-
-
   defaultConfig {
-
-//    jackOptions {
-//      enabled true
-//    }
-
-    applicationId "io.twere.android.clean.viper"
+    applicationId "io.shtanko.cleanviper"
     minSdkVersion 15
     targetSdkVersion 25
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    testApplicationId 'io.twere.android.clean.viper.test'
-
-    buildConfigField STRING, API_URL, '"https://dribbble.com/"'
-    buildConfigField STRING, ENDPOINT, '"https://api.dribbble.com/v1/"'
-
-    buildConfigField STRING, CLIENT_ID,
-        '"3012c2dac0fde1e794040134678845d41449cdcc04933d565df636440129406b"'
-    buildConfigField STRING, CLIENT_SECRET,
-        '"5973c6ff97d327a06bcc762aa9cda95f5d9f189e03015f47ddd68c72bc72967d"'
-    buildConfigField STRING, CLIENT_TOKEN,
-        '"a1e5d49824b3ed9584e902bf0b0bfdbe3cd7f4e60c6a908e5f5673141530956e"'
   }
-
   buildTypes {
     release {
-      minifyEnabled true
-      debuggable false
-      shrinkResources true
+      minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
-
-    debug {
-      minifyEnabled false
-      debuggable true
-    }
-
-    foss {
-      debuggable false
-      jniDebuggable false
-    }
   }
-  sourceSets.debug {}
-  sourceSets.release {}
-  sourceSets.foss {}
-
-  productFlavors {
-    x86 {
-      ndk {
-        abiFilter "x86"
-      }
-      versionCode = 0
-    }
-    arm {
-      ndk {
-        abiFilter "armeabi"
-      }
-      versionCode = 0
-    }
-    armv7 {
-      ndk {
-        abiFilter "armeabi-v7a"
-      }
-      versionCode = 0
-    }
-    fat {
-      versionCode = 0
-    }
-  }
-
-  applicationVariants.all { variant ->
-    def abiVersion = variant.productFlavors.get(0).versionCode
-    variant.mergedFlavor.versionCode = defaultConfig.versionCode * 10 + abiVersion;
-  }
-
-  dexOptions {
-    javaMaxHeapSize "2048M"
-  }
-  compileOptions.incremental = false
-  buildToolsVersion '25.0.2'
 }
 
 dependencies {
-
-  def app = rootProject.ext.appDependencies
-  def appTest = rootProject.ext.appTestDependencies
-
-  compile app.androidSupport
-  compile app.androidSupportV4
-  compile app.androidAnnotations
-  compile app.recyclerView
-  compile app.design
-  compile app.butterKnife
-  compile app.dagger
-  annotationProcessor app.daggerCompiler
-  provided app.javaxAnnotation
-  compile app.rxJava
-  compile app.rxAndroid
-  compile app.okHttp
-  compile app.okhttpLogging
-  compile app.glide
-  compile app.retrofit
-  compile app.gson
-  compile app.retrofitConverterGson
-  compile app.retrofitRxAdapter
-
-  testCompile appTest.junit
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+  compile 'com.android.support:appcompat-v7:25.3.1'
+  testCompile 'junit:junit:4.12'
 }
